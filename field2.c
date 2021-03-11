@@ -12,10 +12,9 @@ void Initialise(){
 }
 
 void Draw(void){
-
     glClear(GL_COLOR_BUFFER_BIT);
 
-    int p = 0, q = 0;
+    int p = 0, q = 0, a = 0;
     int count = 50;
     int ptr = 0;
 
@@ -53,16 +52,30 @@ void Draw(void){
                 glVertex2f(y,-x);
                 glVertex2f(-y,x);
                 glVertex2f(-y,-x);
+
+                int k = a;
+
+                while(a-k<count*sqrt(2)){
+                    glVertex2f(a,0);
+                    glVertex2f(0,a);
+                    glVertex2f(-a,0);
+                    glVertex2f(0,-a);
+
+                    a++;
+                }
+
+                a = a + count;
             }
 
         glEnd();    
 
-        p = p + count;
-        q = 0;
+        p = p + 2*count;
+        q = q + count;
         ptr++;
     }
 
     glFlush();
+
 }
 
 int main(int argc, char** argv){
@@ -79,3 +92,14 @@ int main(int argc, char** argv){
     return 0;
 
 }
+
+
+
+
+
+
+
+
+
+
+

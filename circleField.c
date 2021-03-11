@@ -11,6 +11,80 @@ void Initialise(){
 	gluOrtho2D(-780, 780, -420, 420);
 }
 
+void drawCoordinates(int x, int y, int p, int count){
+            glVertex2f(x + p + count/2,y + count/2);
+            glVertex2f(x + p + count/2,-y + count/2);
+            glVertex2f(-x + p + count/2,y + count/2);
+            glVertex2f(-x + p + count/2,-y + count/2);
+            glVertex2f(y + p + count/2,x + count/2);
+            glVertex2f(y + p + count/2,-x + count/2);
+            glVertex2f(-y + p + count/2,x + count/2);
+            glVertex2f(-y + p + count/2,-x + count/2);
+
+            glVertex2f(x - p - count/2,y + count/2);
+            glVertex2f(x - p - count/2,-y + count/2);
+            glVertex2f(-x - p - count/2,y + count/2);
+            glVertex2f(-x - p - count/2,-y + count/2);
+            glVertex2f(y - p - count/2,x + count/2);
+            glVertex2f(y - p - count/2,-x + count/2);
+            glVertex2f(-y - p - count/2,x + count/2);
+            glVertex2f(-y - p - count/2,-x + count/2);
+
+            glVertex2f(x + p + count/2,y - count/2);
+            glVertex2f(x + p + count/2,-y - count/2);
+            glVertex2f(-x + p + count/2,y - count/2);
+            glVertex2f(-x + p + count/2,-y - count/2);
+            glVertex2f(y + p + count/2,x - count/2);
+            glVertex2f(y + p + count/2,-x - count/2);
+            glVertex2f(-y + p + count/2,x - count/2);
+            glVertex2f(-y + p + count/2,-x - count/2);
+
+            glVertex2f(x - p - count/2,y - count/2);
+            glVertex2f(x - p - count/2,-y - count/2);
+            glVertex2f(-x - p - count/2,y - count/2);
+            glVertex2f(-x - p - count/2,-y - count/2);
+            glVertex2f(y - p - count/2,x - count/2);
+            glVertex2f(y - p - count/2,-x - count/2);
+            glVertex2f(-y - p - count/2,x - count/2);
+            glVertex2f(-y - p - count/2,-x - count/2);
+
+            glVertex2f(y + count/2, x + p + count/2);
+            glVertex2f(-y + count/2, x + p + count/2);
+            glVertex2f(y + count/2,-x + p + count/2);
+            glVertex2f(-y + count/2, -x + p + count/2);
+            glVertex2f(x + count/2, y + p + count/2);
+            glVertex2f(-x + count/2, y + p + count/2);
+            glVertex2f(x + count/2, -y + p + count/2);
+            glVertex2f(-x + count/2, -y + p + count/2);
+
+            glVertex2f(y + count/2, x - p - count/2);
+            glVertex2f(-y + count/2, x - p - count/2);
+            glVertex2f(y + count/2,-x - p - count/2);
+            glVertex2f(-y + count/2, -x - p - count/2);
+            glVertex2f(x + count/2, y - p - count/2);
+            glVertex2f(-x + count/2, y - p - count/2);
+            glVertex2f(x + count/2, -y - p - count/2);
+            glVertex2f(-x + count/2, -y - p - count/2);
+
+            glVertex2f(y - count/2, x - p - count/2);
+            glVertex2f(-y - count/2, x - p - count/2);
+            glVertex2f(y - count/2,-x - p - count/2);
+            glVertex2f(-y - count/2, -x - p - count/2);
+            glVertex2f(x - count/2, y - p - count/2);
+            glVertex2f(-x - count/2, y - p - count/2);
+            glVertex2f(x - count/2, -y - p - count/2);
+            glVertex2f(-x - count/2, -y - p - count/2);
+
+            glVertex2f(y - count/2, x + p + count/2);
+            glVertex2f(-y - count/2, x + p + count/2);
+            glVertex2f(y - count/2,-x + p + count/2);
+            glVertex2f(-y - count/2, -x + p + count/2);
+            glVertex2f(x - count/2, y + p + count/2);
+            glVertex2f(-x - count/2, y + p + count/2);
+            glVertex2f(x - count/2, -y + p + count/2);
+            glVertex2f(-x - count/2, -y + p + count/2);
+}
+
 void Draw(void){
 
     glClear(GL_COLOR_BUFFER_BIT);
@@ -19,27 +93,20 @@ void Draw(void){
     int count = 50;
     int ptr = 0;
 
-    while(ptr<1){
+    while(ptr<20){
         glBegin(GL_POINTS);
-            float centrex = (p+(count/2));
+            float centrex = p+(count/2);
             float centrey = count/2;
 
-            float radius = count / sqrt(2);
+            float radius = count/sqrt(2);
 
-            float x = p + count/2;
-            float y = count/2 + radius;
+            float x = 0;
+            float y = radius;
             float d = 1 - radius;
             float deltaE = 3;
             float deltaSE = -2 *radius  + 5;
 
-            glVertex2f(x,y);
-            glVertex2f(x,-y);
-            glVertex2f(-x,y);
-            glVertex2f(-x,-y);
-            glVertex2f(y,x);
-            glVertex2f(y,-x);
-            glVertex2f(-y,x);
-            glVertex2f(-y,-x);
+            drawCoordinates(x,y,p,count);
 
             while(y > x){
                 if(d < 0){
@@ -54,14 +121,9 @@ void Draw(void){
                     y--;
                 }
                 x++;
-                glVertex2f(x + p + count/2,y + count/2);
-                glVertex2f(x + p + count/2,-y + count/2);
-                glVertex2f(-x + p + count/2,y + count/2);
-                glVertex2f(-x + p + count/2,-y + count/2);
-                glVertex2f(y + p + count/2,x + count/2);
-                glVertex2f(y + p + count/2,-x + count/2);
-                glVertex2f(-y + p + count/2,x + count/2);
-                glVertex2f(-y + p + count/2,-x + count/2);
+
+                drawCoordinates(x,y,p,count);
+
             }
 
         glEnd();    
